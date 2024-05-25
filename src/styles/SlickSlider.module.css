@@ -1,0 +1,12 @@
+/* HeroSlider2.module.css */
+.customSwiperBullet {
+  background: white !important; /* Change pagination bullet color */
+  opacity: 1 !important;
+  border-radius: 10px !important;
+}
+
+.customSwiperBulletActive {
+  opacity: 1;
+  background: white !important; /* Ensure active bullet color is also white */
+  width: 25px !important; /* Increase width for active pagination bullet */
+}
