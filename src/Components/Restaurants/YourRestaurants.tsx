@@ -1,13 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { Inter } from "next/font/google";
-import RestaurantsSlider from "./RestaurantsSlider";
 import { RestaurantTypes, ClickFavoriteType } from "../../../utils/types";
 import LoadingScreen from "../LoadingScreen";
+import Link from "next/link";
+import RestaurantsList from "./RestaurantsList";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const TrendingRestaurant = () => {
+const YourRestaurants = () => {
   const [trendingRestaurants, setTrendingRestaurants] = useState([
     {
       id: 1,
@@ -93,14 +94,19 @@ const TrendingRestaurant = () => {
       {isLoading && <LoadingScreen />}
 
       <div className="container ">
-        <h1
-          className={`${inter.className} text-3xl text-deepGolden font-bold `}
-        >
-          Trending Restaurants
-        </h1>
+        <div className="flex items-center justify-between">
+          <h1
+            className={`${inter.className} text-3xl text-deepGolden font-bold`}
+          >
+            Your Restaurants
+          </h1>
+          <Link href={"/your-restaurants"} className="underline">
+            View All
+          </Link>
+        </div>
 
         <div className="pt-10">
-          <RestaurantsSlider
+          <RestaurantsList
             trendingRestaurants={trendingRestaurants}
             clickFavorite={clickFavorite}
           />
@@ -110,4 +116,4 @@ const TrendingRestaurant = () => {
   );
 };
 
-export default TrendingRestaurant;
+export default YourRestaurants;

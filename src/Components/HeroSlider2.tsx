@@ -11,8 +11,8 @@ import Image from "next/image";
 
 const HeroSlider2 = () => {
   return (
-    <div className="">
-      <div className="container border">
+    <div className="py-10">
+      <div className="container">
         <div className="rounded-3xl overflow-hidden">
           <Swiper
             autoplay={{

@@ -7,7 +7,7 @@ import LoadingScreen from "../LoadingScreen";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const TrendingRestaurant = () => {
+const FavoriteRestaurants = () => {
   const [trendingRestaurants, setTrendingRestaurants] = useState([
     {
       id: 1,
@@ -96,7 +96,7 @@ const TrendingRestaurant = () => {
         <h1
           className={`${inter.className} text-3xl text-deepGolden font-bold `}
         >
-          Trending Restaurants
+          Favorites
         </h1>
 
         <div className="pt-10">
@@ -110,4 +110,4 @@ const TrendingRestaurant = () => {
   );
 };
 
-export default TrendingRestaurant;
+export default FavoriteRestaurants;
