@@ -1,0 +1,11 @@
+.landingImg {
+  z-index: 0;
+}
+.landingText {
+  position: relative;
+  z-index: 1;
+}
+.landingForm {
+  position: relative;
+  z-index: 1;
+}

@@ -61,7 +61,7 @@ const RestaurantsSlider: React.FC<RestaurantSliderProps> = ({
               },
               1024: {
                 slidesPerView: 4,
-                spaceBetween: 30,
+                spaceBetween: 32,
               },
             }}
             navigation={true}

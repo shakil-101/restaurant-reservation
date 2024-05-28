@@ -75,7 +75,7 @@ const YourRestaurants = () => {
     await new Promise<void>((resolve) =>
       setTimeout(() => {
         resolve();
-      }, 700)
+      }, 1000)
     );
 
     setIsLoading(false);

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import HeroSlider from "@/Components/HeroSlider";
-import HeroSlider2 from "@/Components/HeroSlider2";
 import TrendingRestaurant from "@/Components/Restaurants/TrendingRestaurant";
 import LoadingScreen from "@/Components/LoadingScreen";
 import YourRestaurants from "@/Components/Restaurants/YourRestaurants";
@@ -13,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <main className={` ${inter.className} `}>
-      <HeroSlider2 />
+      <HeroSlider />
 
       <TrendingRestaurant />
       <YourRestaurants />

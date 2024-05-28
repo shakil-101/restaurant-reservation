@@ -18,6 +18,8 @@ const AllRestaurants = () => {
       image: "restaurant1.png",
       isReserved: false,
       isFavorite: true,
+      locations: ["Mirpur"],
+      cuisins: ["Pizza", "Kebab"],
     },
     {
       id: 2,
@@ -26,6 +28,8 @@ const AllRestaurants = () => {
       image: "restaurant2.png",
       isReserved: true,
       isFavorite: false,
+      locations: ["Dhanmondi", "Mirpur"],
+      cuisins: ["Biriyani", "Kebab"],
     },
     {
       id: 3,
@@ -34,6 +38,8 @@ const AllRestaurants = () => {
       image: "restaurant3.png",
       isReserved: false,
       isFavorite: false,
+      locations: ["Uttara", "Dhanmondi"],
+      cuisins: ["Chicken", "Pizza"],
     },
     {
       id: 4,
@@ -42,6 +48,8 @@ const AllRestaurants = () => {
       image: "restaurant4.png",
       isReserved: true,
       isFavorite: true,
+      locations: ["Gulshan 2", "Gulshan 1"],
+      cuisins: ["Burger", "Pizza"],
     },
     {
       id: 5,
@@ -50,6 +58,8 @@ const AllRestaurants = () => {
       image: "restaurant5.png",
       isReserved: false,
       isFavorite: false,
+      locations: ["Uttara", "Gulshan 1"],
+      cuisins: ["Pizza", "Biriyani", "Kebab"],
     },
     {
       id: 6,
@@ -58,6 +68,8 @@ const AllRestaurants = () => {
       image: "restaurant2.png",
       isReserved: false,
       isFavorite: false,
+      locations: ["Uttara", "Mirpur"],
+      cuisins: ["Chicken", "Biriyani", "Kebab"],
     },
     {
       id: 7,
@@ -66,9 +78,32 @@ const AllRestaurants = () => {
       image: "restaurant1.png",
       isReserved: true,
       isFavorite: true,
+      locations: ["Gulshan 2", "Gulshan 1"],
+      cuisins: ["Chicken", "Burger"],
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedCuisin, setSelectedCuisin] = useState("");
+
+  const clickCuisinChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCuisin(event.target.value);
+    console.log(event.target.value);
+  };
+  const clickLocationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedLocation(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const filteredRestaurants = trendingRestaurants.filter((restaurant) => {
+    const matchesLocation = selectedLocation
+      ? restaurant.locations.includes(selectedLocation)
+      : true;
+    const matchesCuisin = selectedCuisin
+      ? restaurant.cuisins.includes(selectedCuisin)
+      : true;
+    return matchesLocation && matchesCuisin;
+  });
 
   const clickFavorite: ClickFavoriteType = async (id) => {
     setIsLoading(true);
@@ -104,18 +139,17 @@ const AllRestaurants = () => {
           <div className="flex gap-3">
             <div className=" relative">
               <select
-                name="locations"
+                onChange={clickCuisinChange}
+                name="cuisins"
                 className="bg-mediumDark2 px-3 py-2 rounded-full text-sm w-32 cursor-pointer outline-0 appearance-none "
               >
-                <option value="">Location</option>
-                <option value="Banani" className="cursor-pointer">
-                  Banani
-                </option>
-                <option value="Gulshan 1">Gulshan 1</option>
-                <option value="Gulshan 2">Gulshan 2</option>
-                <option value="Mirpur">Mirpur</option>
-                <option value="Dhanmondi">Dhanmondi</option>
-                <option value="Uttara">Uttara</option>
+                <option value="">Cuisin</option>
+
+                <option value="Kebab">Kebab</option>
+                <option value="Biriyani">Biriyani</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Burger">Burger</option>
+                <option value="Chicken">Chicken</option>
               </select>
               <span className="absolute top-2 right-2 pointer-events-none">
                 <IoMdArrowDropdown className="text-xl" />
@@ -123,29 +157,11 @@ const AllRestaurants = () => {
             </div>
             <div className=" relative">
               <select
+                onChange={clickLocationChange}
                 name="locations"
                 className="bg-mediumDark2 px-3 py-2 rounded-full text-sm w-32 cursor-pointer outline-0 appearance-none "
               >
                 <option value="">Location</option>
-                <option value="Banani" className="cursor-pointer">
-                  Banani
-                </option>
-                <option value="Gulshan 1">Gulshan 1</option>
-                <option value="Gulshan 2">Gulshan 2</option>
-                <option value="Mirpur">Mirpur</option>
-                <option value="Dhanmondi">Dhanmondi</option>
-                <option value="Uttara">Uttara</option>
-              </select>
-              <span className="absolute top-2 right-2 pointer-events-none">
-                <IoMdArrowDropdown className="text-xl" />
-              </span>
-            </div>
-            <div className=" relative">
-              <select
-                name="locations"
-                className="bg-mediumDark2 px-3 py-2 rounded-full text-sm w-32 cursor-pointer outline-0 appearance-none "
-              >
-                <option value="">Sort By</option>
                 <option value="Banani" className="cursor-pointer">
                   Banani
                 </option>
@@ -162,9 +178,9 @@ const AllRestaurants = () => {
           </div>
         </div>
 
-        <div className="pt-10">
+        <div className="pt-10 min-h-[350px]">
           <RestaurantsList
-            trendingRestaurants={trendingRestaurants}
+            trendingRestaurants={filteredRestaurants}
             clickFavorite={clickFavorite}
           />
         </div>

@@ -2,23 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========= input number =========== */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+/* ============ loader =============== */
+
+.loader {
+  width: 55px;
+  aspect-ratio: 1;
+  --_g: no-repeat radial-gradient(farthest-side, #e2c479 94%, #0000);
+  background: var(--_g) 0 0, var(--_g) 100% 0, var(--_g) 100% 100%,
+    var(--_g) 0 100%;
+  background-size: 40% 40%;
+  animation: l38 0.5s infinite;
+}
+@keyframes l38 {
+  100% {
+    background-position: 100% 0, 100% 100%, 0 100%, 0 0;
+  }
+}
+
+/* ======= swiper slider ======= */
 :root {
   --swiper-navigation-color: #e49a38;
 }
-/* .swiper {
-  width: 100%;
-  height: 500px;
-} */
-
-/* .swiper-slide {
-} */
-
-/* .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
 
 .swiper-pagination-bullet {
   background: white !important;
@@ -43,23 +63,3 @@
   color: #969696 !important;
   /* background-color: gray !important; */
 }
-
-/* ============ loader =============== */
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
-.loader {
-  width: 55px;
-  aspect-ratio: 1;
-  --_g: no-repeat radial-gradient(farthest-side, #e2c479 94%, #0000);
-  background: var(--_g) 0 0, var(--_g) 100% 0, var(--_g) 100% 100%,
-    var(--_g) 0 100%;
-  background-size: 40% 40%;
-  animation: l38 0.5s infinite;
-}
-@keyframes l38 {
-  100% {
-    background-position: 100% 0, 100% 100%, 0 100%, 0 0;
-  }
-}
-
-/* ========== */

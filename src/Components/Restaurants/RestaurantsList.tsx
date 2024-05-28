@@ -15,6 +15,7 @@ import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 import { HiOutlineHeart, HiMiniHeart } from "react-icons/hi2";
 
 import { RestaurantTypes, ClickFavoriteType } from "../../../utils/types";
+import Link from "next/link";
 
 interface RestaurantSliderProps {
   trendingRestaurants: RestaurantTypes[];
@@ -29,27 +30,9 @@ const RestaurantsList: React.FC<RestaurantSliderProps> = ({
     <div className="">
       <div className="">
         <div className=" relative">
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={10}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 3,
-                spaceBetween: 40,
-              },
-              1024: {
-                slidesPerView: 4,
-                spaceBetween: 30,
-              },
-            }}
-            className="trending-restaurants"
-          >
+          <div className="grid grid-cols-4 gap-8">
             {trendingRestaurants.map((restaurant, index) => (
-              <SwiperSlide key={index}>
+              <div key={index}>
                 <div className="swiper-no-swiping rounded-2xl p-3 border border-deepGray  min-h-[300px] relative">
                   <button
                     onClick={() => clickFavorite(restaurant.id)}
@@ -85,16 +68,18 @@ const RestaurantsList: React.FC<RestaurantSliderProps> = ({
                           Reserved
                         </button>
                       ) : (
-                        <button className="w-24 py-1.5 text-sm text-deepDark hover:text-mediumGray bg-deepGolden hover:bg-mediumDark2  rounded-full">
-                          Reserve
-                        </button>
+                        <Link href={`/reservation?id=${restaurant.id}`}>
+                          <button className="w-24 py-1.5 text-sm text-deepDark hover:text-mediumGray bg-deepGolden hover:bg-mediumDark2  rounded-full">
+                            Reserve
+                          </button>
+                        </Link>
                       )}
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
+              </div>
             ))}
-          </Swiper>
+          </div>
         </div>
       </div>
     </div>
